@@ -11,14 +11,14 @@
         <v-col>
           <v-text-field
             label="Telefone"
-            v-model="user.email"
+            v-model="user.phone"
             outlined
           ></v-text-field>
         </v-col>
         <v-col>
           <v-text-field
             label="E-mail"
-            v-model="user.phone"
+            v-model="user.email"
             outlined
           ></v-text-field>
         </v-col>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { db } from "../firebaseDb";
+const firebase = require('../firebaseDb.js');
 export default {
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onFormSubmit() {
-      db.collection("users")
+      firebase.db.collection("users")
         .add(this.user)
         .then(() => {
           alert("User successfully created!");
