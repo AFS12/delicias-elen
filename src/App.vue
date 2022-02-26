@@ -1,24 +1,10 @@
 <template>
   <v-app>
     <v-app-bar color="#FFB91D" app>
-      <v-toolbar-title><strong>Delicias da Elen</strong></v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-filter</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <v-toolbar-title @click="drawer = !drawer"><strong>Delicias da Elen</strong></v-toolbar-title>
     </v-app-bar>
 
-    <v-navigation-drawer color="black" permanent app dark>
+    <v-navigation-drawer color="black" app v-model="drawer" dark>
       <v-list>
         <v-row>
           <v-spacer></v-spacer>
@@ -44,7 +30,7 @@
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item to="/vendas">
             <v-icon large>mdi-currency-usd</v-icon>
             <v-list-item-title class="items">
               <h1>Vendas</h1>
@@ -72,6 +58,7 @@ export default {
 
   data: () => ({
     group: null,
+    drawer: true,
   }),
 
 };

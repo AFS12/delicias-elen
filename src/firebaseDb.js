@@ -27,6 +27,7 @@ const settings = {
 };
 db.settings(settings);
 
+
 export {
     db
 };

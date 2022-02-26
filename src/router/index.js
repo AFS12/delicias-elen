@@ -22,6 +22,11 @@ const routes = [
     path: '/produtos',
     name: 'products',
     component: () => import('../components/products/productList'),
+  },
+  {
+    path: '/vendas',
+    name: 'sales',
+    component: () => import('../components/transactions/sales'),
   }
 ]
 const router = new VueRouter({

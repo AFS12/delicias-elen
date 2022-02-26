@@ -65,6 +65,7 @@
               <v-text-field
                 outlined
                 label="Valor"
+                type="number"
                 v-model="product.value"
               ></v-text-field>
             </v-col>
@@ -139,7 +140,7 @@ export default {
       product: {
         name: "",
         taste: "",
-        value: "",
+        value: Number,
       },
       createEdit: false,
     };
@@ -210,7 +211,7 @@ export default {
       this.editing = "";
       this.product.name = "";
       this.product.taste = "";
-      this.product.value = "";
+      this.product.value = Number;
       this.createEdit = false;
     },
   },
