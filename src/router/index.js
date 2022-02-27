@@ -27,6 +27,11 @@ const routes = [
     path: '/vendas',
     name: 'sales',
     component: () => import('../components/transactions/sales'),
+  },
+  {
+    path: '/compras',
+    name: 'buy',
+    component: () => import('../components/transactions/buy'),
   }
 ]
 const router = new VueRouter({

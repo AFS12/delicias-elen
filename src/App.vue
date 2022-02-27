@@ -37,7 +37,7 @@
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item to="/compras">
             <v-icon large>mdi-cart-plus</v-icon>
             <v-list-item-title class="items">
               <h1>Compras</h1>

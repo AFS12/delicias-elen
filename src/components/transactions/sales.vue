@@ -2,7 +2,7 @@
   <v-container>
     <h1>Registar Vendas</h1>
     <h3>
-      Adicione os produtos que foram vendidos, informe a quantidade e salve a
+      Adicione os produtos que foram vendidos. Informe a quantidade e salve a
       venda
     </h3>
     <br /><br /><br />
@@ -85,18 +85,47 @@
         ></v-text-field>
       </v-col>
       <v-col cols="4">
-        <v-btn color="green" x-large block height="56" outlined @click="sell">
+        <v-btn
+          color="green"
+          x-large
+          block
+          height="56"
+          outlined
+          @click="confirm = !confirm"
+        >
           Salvar venda
         </v-btn>
       </v-col>
       <v-spacer></v-spacer>
     </v-row>
+    <v-dialog v-model="confirm" width="300">
+      <v-card>
+        <v-card-title primary-title> Deseja Salvar? </v-card-title>
+        <br />
+        <v-card-actions>
+          <v-btn color="red" dark @click="confirm = !confirm"> Cancelar</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="green" dark @click="sell">Salvar </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <alert
+      :snackbar="snackbar"
+      :timeout="timeout"
+      :text="alertText"
+      :status="alertColor"
+    ></alert>
   </v-container>
 </template>
 
 <script>
 const firebase = require("../../firebaseDb.js");
+import alert from "../alert.vue";
 export default {
+  components: {
+    alert,
+  },
+
   data() {
     return {
       produtos: [],
@@ -109,6 +138,11 @@ export default {
         total: Number,
         items: [],
       },
+      snackbar: false,
+      timeout: 2000,
+      alertText: "Compra salva com sucesso",
+      alertColor: "green",
+      confirm: false,
     };
   },
 
@@ -164,7 +198,7 @@ export default {
         .collection("sales")
         .add(this.sale)
         .then(() => {
-          alert("sale successfully created!");
+          this.alertSuccess("Venda salva com sucesso!");
           this.selecionados = [];
           this.gerarLista();
           this.sale = {
@@ -173,8 +207,27 @@ export default {
           };
         })
         .catch((error) => {
+          this.alertFail();
           console.log(error);
         });
+    },
+    alertSuccess(text) {
+      this.confirm = false;
+      this.snackbar = true;
+      setTimeout(() => {
+        this.snackbar = false;
+      }, this.timeout);
+      this.alertText = text;
+      this.alertColor = "green";
+    },
+    alertFail() {
+      this.confirm = false;
+      this.snackbar = true;
+      setTimeout(() => {
+        this.snackbar = false;
+      }, this.timeout);
+      this.alertText = "Aconteceu algum erro!";
+      this.alertColor = "red";
     },
   },
 };
