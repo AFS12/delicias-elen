@@ -4,19 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 const routes = [
   {
-    path: '/user',
+    path: '/',
     name: 'add',
-    component: () => import('../components/UserCreate')
-  },
-  {
-    path: '/list',
-    name: 'list',
-    component: () => import('../components/UserList')
-  },
-  {
-    path: '/edit/:id',
-    name: 'edit',
-    component: () => import('../components/UserEdit')
+    component: () => import('../components/home')
   },
   {
     path: '/produtos',
